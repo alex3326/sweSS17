@@ -33,6 +33,7 @@ public class ExampleInstrumentedTest {
     }
 
 
+
     @Test
     public void testButton() throws Exception {
 
@@ -70,5 +71,6 @@ public class ExampleInstrumentedTest {
 
     @Rule
     public ActivityTestRule<Calculator> mActivityRule = new
-           ActivityTestRule<>(Calculator.class);
+            ActivityTestRule<>(Calculator.class);
+
 }

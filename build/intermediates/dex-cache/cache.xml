@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/home/alex/Dokumente/4.Semester/Calculator/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b37eca7d19b90479478e7261444c07b603ad99d7">
-        <dex dex="/home/alex/Dokumente/4.Semester/Calculator/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_49d82dc3be481ae2da554f8451a604da926c362b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/alex/Dokumente/4.Semester/Calculator/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="/home/alex/Dokumente/4.Semester/Calculator/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_f13a89504e5ec03605a382952a56b637ed714c3f/classes.dex" />
+        <dex dex="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_befc7db4dd7f5b68c5a7ef510e58b15a72947b65/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ac321ff4478d62861cbc9853fb9436da83bea835">
+        <dex dex="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_17ade14ba161c6286b380c7a6e6ca8e229ced069/classes.dex" />
     </item>
 
 </items>

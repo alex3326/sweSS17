@@ -7,11 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import static android.R.attr.breadCrumbShortTitle;
-import static android.R.attr.button;
-
-
 public class Calculator extends Activity implements View.OnClickListener{
+
 
     private Button buttonZero;
     private Button buttonOne;
@@ -121,5 +118,3 @@ public class Calculator extends Activity implements View.OnClickListener{
         return a + b;
     }
 }
-
-
