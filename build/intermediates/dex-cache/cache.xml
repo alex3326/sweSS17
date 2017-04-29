@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_befc7db4dd7f5b68c5a7ef510e58b15a72947b65/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8937f437288586689c2d3710fb584e0f23848261">
+        <dex dex="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_17ade14ba161c6286b380c7a6e6ca8e229ced069/classes.dex" />
+    </item>
+
+</items>
