@@ -31,6 +31,6 @@ public class TaskViewActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.activity_task_view, taskNames);
         ListView listView = (ListView) findViewById(R.id.listview);
-        //listView.setAdapter(adapter);
+        listView.setAdapter(adapter);
     }
 }
