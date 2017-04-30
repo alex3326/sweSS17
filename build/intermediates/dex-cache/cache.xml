@@ -3,21 +3,291 @@
 
     <item
         is-multidex="true"
-        jar="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="C:\Users\mRozwold\.android\build-cache\8950c86e0a4bf6504b8972f8838d47e3ce681013\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_befc7db4dd7f5b68c5a7ef510e58b15a72947b65/classes.dex" />
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_406d04c776f74ba75c1a872cc9e822a5d366ab63\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\5af44457efc4628b122456b1dfc14f3fbcb999df\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_b34c453d6ecc47f99430d93fd980662cec8a9084.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\8950c86e0a4bf6504b8972f8838d47e3ce681013\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_406d04c776f74ba75c1a872cc9e822a5d366ab63.jar" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="C:\Users\mRozwold\.android\build-cache\27f19305ee0cfd48ae6324dd63ff6e181f6dd198\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="8937f437288586689c2d3710fb584e0f23848261">
-        <dex dex="/home/alex/Dokumente/4.Semester/sweSS17/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_17ade14ba161c6286b380c7a6e6ca8e229ced069/classes.dex" />
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d1fc13090655aaa952e83e097c17e07b952dcf71\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\e11561447d1530967411a3a0fb46fbe0e5400096\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_a6d1de751ed98dae392dda8d3fd976abccf1c33d.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\e11561447d1530967411a3a0fb46fbe0e5400096\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a6d1de751ed98dae392dda8d3fd976abccf1c33d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8842f31e0ff3a026a4521af023d02ff253293388">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_22c384f8083e09802d563cb09336523148bdcef4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_cdf7f236807e0f490c335cda726a49c0d15e0141\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\d006edf1a3dc7e50fe80d736768f13a8340f6517\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_32098b8056fa2aa773db2c085165c5326ae71e06.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\52a9b3d3ef63eebd8270c50b5096b8ebbfa8f77d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_e09797e19c9e8348513c7010d3675dcd190c366c.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\52a9b3d3ef63eebd8270c50b5096b8ebbfa8f77d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e09797e19c9e8348513c7010d3675dcd190c366c\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\0131528687d5238403bc9d422cba9b88c8090647\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_b9a65f75a00bdb614487d912abde4d87fc6ff839.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\03ab749d590584dfb45e8f4c6b84a8338f717b9c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_ccdfa9021b71970031a5c1293a5a7ac7f960facf.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.0\support-annotations-25.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.0_c1a56c6610e7d8ab11d8d4447ed25ed767d29181\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\03ab749d590584dfb45e8f4c6b84a8338f717b9c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ccdfa9021b71970031a5c1293a5a7ac7f960facf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\d006edf1a3dc7e50fe80d736768f13a8340f6517\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_32098b8056fa2aa773db2c085165c5326ae71e06\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_e86134d61811b065f38fabba15dc1fde53de2625.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\e560c9ec80e37ae58d73a808547746c02092eda0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0f2d46b640d7886d825c2f2460ba6bc08fef325e\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.0\support-annotations-25.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.0_c1a56c6610e7d8ab11d8d4447ed25ed767d29181.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\e560c9ec80e37ae58d73a808547746c02092eda0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_0f2d46b640d7886d825c2f2460ba6bc08fef325e.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\0131528687d5238403bc9d422cba9b88c8090647\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b9a65f75a00bdb614487d912abde4d87fc6ff839\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\7f6344c49ed92585e3b4007300fdeafc695bdc99\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_7da075aa53dc2670be0ed5462dad8a1252518e81.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_e86134d61811b065f38fabba15dc1fde53de2625\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\4b4462f152cf3b5650f30fce84c282dd1cb1c39c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b7e014a7579a039f999b15baf25bba4ecc183e7b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\91f920333aa7f0c1056f10cf2b20363ce1a9e3ff\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_24c1df01769453b6a374c0e67a1ea97032c32d36\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\7f6344c49ed92585e3b4007300fdeafc695bdc99\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7da075aa53dc2670be0ed5462dad8a1252518e81\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\91f920333aa7f0c1056f10cf2b20363ce1a9e3ff\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_24c1df01769453b6a374c0e67a1ea97032c32d36.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\27f19305ee0cfd48ae6324dd63ff6e181f6dd198\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_d1fc13090655aaa952e83e097c17e07b952dcf71.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\833a0bd5018a7661d3a5b2dfe05deba60ea06251\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_62385d7790a5c8d9e292c5ffc9c40d9ac2727dd6.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\5af44457efc4628b122456b1dfc14f3fbcb999df\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b34c453d6ecc47f99430d93fd980662cec8a9084\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mRozwold\.android\build-cache\833a0bd5018a7661d3a5b2dfe05deba60ea06251\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_62385d7790a5c8d9e292c5ffc9c40d9ac2727dd6\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mRozwold\.android\build-cache\4b4462f152cf3b5650f30fce84c282dd1cb1c39c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="C:\Users\mRozwold\Desktop\University\4_Semester\Softwareentwicklung und Management\sweSS17\app\build\intermediates\pre-dexed\debug\classes_b7e014a7579a039f999b15baf25bba4ecc183e7b.jar" />
     </item>
 
 </items>
