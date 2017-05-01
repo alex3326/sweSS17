@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import at.sw2017.swess17.application.Task;
+import at.sw2017.swess17.application.TaskList;
 
 public class TaskViewActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class TaskViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_view);
 
         Date date = new Date();
-        List<Task> taskList = new ArrayList<>();
+        TaskList<Task> taskList = new TaskList<>();
         taskList.add(new Task("Task1", "Only a task", date));
         taskList.add(new Task("Task2", "Only a task", date));
         taskList.add(new Task("Task3", "Only a task", date));
