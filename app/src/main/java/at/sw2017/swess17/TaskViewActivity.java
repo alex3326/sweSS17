@@ -29,7 +29,8 @@ public class TaskViewActivity extends AppCompatActivity {
 
         String[] taskNames = taskList.stream().map(x -> x.getName()).toArray(size -> new String[size]);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.activity_task_view, taskNames);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, taskNames);
         ListView listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter);
     }
