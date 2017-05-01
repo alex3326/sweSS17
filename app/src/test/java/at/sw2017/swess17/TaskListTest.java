@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import at.sw2017.swess17.application.Task;
+import at.sw2017.swess17.application.TaskList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,7 +34,7 @@ public class TaskListTest {
         Task task2 = new Task("Task2", "Only a task", date);
         Task task3 = new Task("Task3", "Only a task", date);
 
-        List<Task> taskList = new ArrayList<>();
+        TaskList<Task> taskList = new TaskList<Task>();
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
