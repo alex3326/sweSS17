@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">TODO4U</string>
+
+    <string name="category_list_title">Categories</string>
+    <string name="category_list_add">Add</string>
+    <string name="category_list_search">Search</string>
+    <string name="category_list_settings">Settings</string>
+
+    <string name="category_add_title">New Category</string>
+    <string name="category_add_error_name_empty">Please enter a name for the category.</string>
+    <string name="category_add_error_database">Creating category %1$s failed. Maybe it already exists.</string>
+    <string name="category_add_success">Category %1$s created successfully.</string>
+
+    <string name="task_list_title">Tasks: %1$s</string>
+    <string name="task_list_search">Search</string>
+    <string name="task_list_add">Add</string>
+
+    <string name="task_add_title">New Task</string>
+    <string name="task_add_error_required_fields">Please fill out all required fields.</string>
+    <string name="task_add_setDueDate">Set Due Date</string>
+    <string name="task_add_setReminderDate">Set Reminder Date</string>
+
+    <string name="task_attr_title">Title</string>
+    <string name="task_attr_description">Description</string>
+    <string name="task_attr_dueDate">Due Date</string>
+    <string name="task_attr_reminderDate">Reminder Date</string>
+</resources>

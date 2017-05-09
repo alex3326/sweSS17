@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TaskAddActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/task_add_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/task_add_btSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        android:weightSum="1"
+        android:layout_margin="@dimen/activity_horizontal_margin">
+
+        <EditText
+            android:id="@+id/task_add_tfTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/task_attr_title"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/task_add_tfDescription"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.27"
+            android:ems="10"
+            android:hint="@string/task_attr_description"
+            android:inputType="textMultiLine"
+            android:selectAllOnFocus="false"
+            android:singleLine="false" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/task_add_lbDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="start"
+                android:layout_marginEnd="16dp"
+                android:layout_row="0"
+                android:text="@string/task_attr_dueDate"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/task_add_btDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal|start"
+                android:text="@string/task_add_setDueDate"
+                android:onClick="onDueDateSelect"/>
+
+            <TextView
+                android:id="@+id/task_add_lbReminderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="start"
+                android:layout_marginEnd="16dp"
+                android:layout_row="1"
+                android:text="@string/task_attr_reminderDate"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/task_add_btReminderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal|start"
+                android:text="@string/task_add_setReminderDate"
+                android:onClick="onReminderDateSelect"/>
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
