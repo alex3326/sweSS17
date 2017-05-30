@@ -96,7 +96,7 @@ public class TaskAddActivity extends AppCompatActivity {
         }
         task.setDescription(tfDescription.getText().toString());
         task.setCategory(cat);
-        task.setState(Task.State.OPEN);
+        task.setProgress(0);
 
         tds.insertOrUpdate(task);
         tds.close();

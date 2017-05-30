@@ -14,7 +14,7 @@ public final class Todo4uContract {
         public static final String CREATION_DATE = "creationDate";
         public static final String REMINDER_DATE = "reminderDate";
         public static final String CATEGORY_ID = "categoryId";
-        public static final String STATE = "state";
+        public static final String PROGRESS = "progress";
     }
 
     public static class TaskCategory implements BaseColumns {

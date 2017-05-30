@@ -33,12 +33,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.startsWith;
 
 public class TaskListActivityTest {
     @Rule
@@ -82,13 +79,13 @@ public class TaskListActivityTest {
         tcDs.insertOrUpdate(cat);
         tcDs.close();
         Task t1 = new Task("TestTask 1");
-        t1.setState(Task.State.IN_PROGRESS);
+        t1.setProgress(30);
         t1.setCategory(cat);
         Calendar cal = Calendar.getInstance();
         cal.set(2017, 7, 2, 10, 30);
         t1.setDueDate(cal.getTime());
         Task t2 = new Task("My second Task");
-        t2.setState(Task.State.OPEN);
+        t2.setProgress(0);
         t2.setCategory(cat);
 
         tDs.open();
@@ -106,9 +103,7 @@ public class TaskListActivityTest {
         onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(1)
                 .onChildView(withText("My second Task")).check(matches(isDisplayed())).perform(click());
 
-        onView(withText(allOf(startsWith("Selected task "), endsWith("My second Task"))))
-                .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
-                .check(matches(isDisplayed()));
+        onView(withId(R.id.task_add_tfTitle)).check(matches(withText("My second Task")));
 
     }
 
@@ -167,9 +162,11 @@ public class TaskListActivityTest {
 
     @Test
     public void insertTasks() {
-        TaskCategory cat = new TaskCategory("MyTaskCategory");
+        TaskCategory cat1 = new TaskCategory("MyTaskCategory");
+        TaskCategory cat2 = new TaskCategory("Second Category");
         tcDs.open();
-        tcDs.insertOrUpdate(cat);
+        tcDs.insertOrUpdate(cat1);
+        tcDs.insertOrUpdate(cat2);
         tcDs.close();
 
         callOnResumeWorkaround();
@@ -200,7 +197,7 @@ public class TaskListActivityTest {
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
                 .perform(PickerActions.setDate(
                         cal.get(Calendar.YEAR),
-                        cal.get(Calendar.MONTH),
+                        cal.get(Calendar.MONTH) + 1,
                         cal.get(Calendar.DAY_OF_MONTH)
                 ));
         onView(withText("OK")).perform(click());
@@ -215,13 +212,19 @@ public class TaskListActivityTest {
 
         onView(withId(R.id.task_add_tfTitle)).perform(typeText("My second task"), closeSoftKeyboard());
         onView(withId(R.id.task_add_tfDescription)).perform(typeText("My second task description"), closeSoftKeyboard());
+        onView(withId(R.id.task_add_seekProgress)).perform(TestHelper.setSeekBarProgress(67));
+        onView(withId(R.id.task_add_spinnerCategory)).perform(click());
+        onData(TestHelper.withSpinnerCategoryText("Second Category")).perform(click());
+        onView(withId(R.id.task_add_spinnerCategory)).perform(click());
+        onData(TestHelper.withSpinnerCategoryText("MyTaskCategory")).perform(click());
         onView(withId(R.id.task_add_btReminderDate)).perform(click());
-        Calendar cal = Calendar.getInstance();
+        Calendar calRemind1 = Calendar.getInstance();
+        calRemind1.add(Calendar.MONTH, 1);
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
                 .perform(PickerActions.setDate(
-                        cal.get(Calendar.YEAR),
-                        cal.get(Calendar.MONTH),
-                        cal.get(Calendar.DAY_OF_MONTH)
+                        calRemind1.get(Calendar.YEAR),
+                        calRemind1.get(Calendar.MONTH) + 1,
+                        calRemind1.get(Calendar.DAY_OF_MONTH)
                 ));
         onView(withText("OK")).perform(click());
         onView(withId(R.id.task_add_btSave)).perform(click());
@@ -229,11 +232,27 @@ public class TaskListActivityTest {
                 .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
         onView(withId(R.id.task_add_btDueDate)).perform(click());
+        Calendar calDue = Calendar.getInstance();
+        calDue.add(Calendar.DAY_OF_MONTH, 8);
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
                 .perform(PickerActions.setDate(
-                        cal.get(Calendar.YEAR),
-                        cal.get(Calendar.MONTH),
-                        cal.get(Calendar.DAY_OF_MONTH)
+                        calDue.get(Calendar.YEAR),
+                        calDue.get(Calendar.MONTH) + 1,
+                        calDue.get(Calendar.DAY_OF_MONTH)
+                ));
+        onView(withText("OK")).perform(click());
+        onView(withId(R.id.task_add_btSave)).perform(click());
+        onView(withText(R.string.task_add_error_dates_reminderAfterDue))
+                .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
+                .check(matches(isDisplayed()));
+        onView(withId(R.id.task_add_btReminderDate)).perform(click());
+        Calendar calRemind2 = Calendar.getInstance();
+        calRemind2.add(Calendar.DAY_OF_MONTH, 3);
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(
+                        calRemind2.get(Calendar.YEAR),
+                        calRemind2.get(Calendar.MONTH) + 1,
+                        calRemind2.get(Calendar.DAY_OF_MONTH)
                 ));
         onView(withText("OK")).perform(click());
         onView(withId(R.id.task_add_btSave)).perform(click());

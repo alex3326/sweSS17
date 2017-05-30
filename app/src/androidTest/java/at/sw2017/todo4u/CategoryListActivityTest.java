@@ -150,4 +150,10 @@ public class CategoryListActivityTest {
                 .check(matches(isDisplayed()));
     }
 
+    @Test
+    public void addTaskClick() {
+        onView(withId(R.id.bt_add_main)).perform(click());
+        onView(withId(R.id.task_add_tfTitle)).check(matches(isDisplayed()));
+    }
+
 }
