@@ -16,6 +16,7 @@
     <string name="task_list_add">Add</string>
 
     <string name="task_add_title">New Task</string>
+    <string name="task_edit_title">Edit Task</string>
     <string name="task_add_error_required_fields">Please fill out all required fields.</string>
     <string name="task_add_error_dates_reminderAfterDue">The reminder date has to be before the due date.</string>
     <string name="task_add_setDueDate">Set Due Date</string>
