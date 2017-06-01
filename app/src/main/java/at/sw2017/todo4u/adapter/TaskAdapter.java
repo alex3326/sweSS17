@@ -77,7 +77,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
             }
 
             holder.display_name.setText(task.getTitle());
-            holder.display_days.setText(String.format(Locale.getDefault(), "%d", daysRemaining));
+            holder.display_days.setText(String.format(Locale.getDefault(), "%d d", daysRemaining));
 
 
         } catch (Exception e) {

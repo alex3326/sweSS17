@@ -74,7 +74,9 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
                 Object o = parent.getItemAtPosition(position);
                 if (o instanceof Task) {
                     Task t = (Task) o;
-                    Toast.makeText(getApplicationContext(), "Selected task " + t.getId() + ": " + t.getTitle(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TaskListActivity.this, TaskAddActivity.class);
+                    intent.putExtra("task", t.getId());
+                    startActivity(intent);
                 }
             }
         });

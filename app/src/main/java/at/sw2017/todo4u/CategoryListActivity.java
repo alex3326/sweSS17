@@ -111,8 +111,7 @@ public class CategoryListActivity extends AppCompatActivity implements SearchVie
     }
 
     public void onTaskAdd(View view) {
-        // TODO implementation
-        Intent intent = new Intent(this, CategoryAddPopup.class);
+        Intent intent = new Intent(this, TaskAddActivity.class);
         startActivity(intent);
     }
 }

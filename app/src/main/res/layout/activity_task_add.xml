@@ -55,6 +55,20 @@
             android:selectAllOnFocus="false"
             android:singleLine="false" />
 
+        <TextView
+            android:id="@+id/task_add_lbCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="16dp"
+            android:text="@string/task_attr_category"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/task_add_spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -75,8 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal|start"
-                android:text="@string/task_add_setDueDate"
-                android:onClick="onDueDateSelect"/>
+                android:onClick="onDueDateSelect"
+                android:text="@string/task_add_setDueDate" />
 
             <TextView
                 android:id="@+id/task_add_lbReminderDate"
@@ -94,10 +108,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal|start"
-                android:text="@string/task_add_setReminderDate"
-                android:onClick="onReminderDateSelect"/>
+                android:onClick="onReminderDateSelect"
+                android:text="@string/task_add_setReminderDate" />
 
         </GridLayout>
+
+        <TextView
+            android:id="@+id/task_add_lbProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="16dp"
+            android:text="@string/task_attr_progress"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:id="@+id/task_add_seekProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0" />
+
 
     </LinearLayout>
 

@@ -30,9 +30,9 @@ public class ModelTest {
         assertNull(t.getReminderDate());
         assertNull(t.getReminderDateAsNumber());
         assertNull(t.getCategory());
-        assertNull(t.getState());
+        assertEquals(0, t.getProgress());
         assertEquals(0, t.getId());
-        assertEquals("Task{id=0, title='Mein Task 42', description='null', dueDate=null, creationDate=null, reminderDate=null, category=null, state=null}", t.toString());
+        assertEquals("Task{id=0, title='Mein Task 42', description='null', dueDate=null, creationDate=null, reminderDate=null, category=null, progress=0}", t.toString());
     }
 
     @Test
@@ -66,24 +66,18 @@ public class ModelTest {
     }
 
     @Test
-    public void taskState() {
-        Task t1 = new Task("T");
-        t1.setState(0);
-        assertEquals(Task.State.OPEN, t1.getState());
-        t1.setState(1);
-        assertEquals(Task.State.FINISHED, t1.getState());
-        t1.setState(2);
-        assertEquals(Task.State.IN_PROGRESS, t1.getState());
-        t1.setState(Task.State.OPEN);
-        assertEquals(0, t1.getStateId());
-        t1.setState(Task.State.FINISHED);
-        assertEquals(1, t1.getStateId());
-        t1.setState(Task.State.IN_PROGRESS);
-        assertEquals(2, t1.getStateId());
-
-        assertEquals(Task.State.OPEN, Task.State.valueOf("OPEN"));
-        assertEquals(Task.State.FINISHED, Task.State.valueOf("FINISHED"));
-        assertEquals(Task.State.IN_PROGRESS, Task.State.valueOf("IN_PROGRESS"));
+    public void taskFinished() {
+        Task t = new Task();
+        t.setProgress(0);
+        assertFalse(t.isFinished());
+        t.setProgress(30);
+        assertFalse(t.isFinished());
+        t.setFinished(true);
+        assertTrue(t.isFinished());
+        assertEquals(100, t.getProgress());
+        t.setFinished(false);
+        assertFalse(t.isFinished());
+        assertEquals(0, t.getProgress());
     }
 
     @Test

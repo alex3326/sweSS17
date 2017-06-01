@@ -16,7 +16,7 @@ public class TasksDataSource extends AbstractDataSource<Task> {
                         Todo4uContract.Task._ID, Todo4uContract.Task.TITLE,
                         Todo4uContract.Task.DESCRIPTION, Todo4uContract.Task.DUE_DATE,
                         Todo4uContract.Task.CREATION_DATE, Todo4uContract.Task.REMINDER_DATE,
-                        Todo4uContract.Task.CATEGORY_ID, Todo4uContract.Task.STATE
+                        Todo4uContract.Task.CATEGORY_ID, Todo4uContract.Task.PROGRESS
                 },
                 Todo4uContract.Task._TABLE_NAME
         );
@@ -53,12 +53,7 @@ public class TasksDataSource extends AbstractDataSource<Task> {
         } else {
             values.putNull(Todo4uContract.Task.CATEGORY_ID);
         }
-
-        if (task.getState() != null) {
-            values.put(Todo4uContract.Task.STATE, task.getStateId());
-        } else {
-            values.putNull(Todo4uContract.Task.STATE);
-        }
+        values.put(Todo4uContract.Task.PROGRESS, task.getProgress());
 
         return values;
     }
@@ -93,7 +88,7 @@ public class TasksDataSource extends AbstractDataSource<Task> {
             }
         }
         if (!cursor.isNull(7)) {
-            task.setState(cursor.getInt(7));
+            task.setProgress(cursor.getInt(7));
         }
         return task;
     }
@@ -104,13 +99,11 @@ public class TasksDataSource extends AbstractDataSource<Task> {
     }
 
     public List<Task> getNotFinishedTasksInCategory(TaskCategory category) {
-        String selection = Todo4uContract.Task.STATE + " != ?";
-        String[] selectionArgs;
+        String selection = Todo4uContract.Task.PROGRESS + " != 100";
+        String[] selectionArgs = null;
         if (category != null) {
             selection += " AND " + Todo4uContract.Task.CATEGORY_ID + " = ?";
-            selectionArgs = new String[]{Integer.toString(Task.State.FINISHED.getStateId()), Long.toString(category.getId())};
-        } else {
-            selectionArgs = new String[]{Integer.toString(Task.State.FINISHED.getStateId())};
+            selectionArgs = new String[]{Long.toString(category.getId())};
         }
 
         return getSelection(selection, selectionArgs);
