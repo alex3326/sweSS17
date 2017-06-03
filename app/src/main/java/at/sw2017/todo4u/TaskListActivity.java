@@ -11,8 +11,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import at.sw2017.todo4u.adapter.TaskAdapter;
@@ -128,7 +129,9 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
     public void updateData() {
         tds.open();
         adapter.clear();
-        adapter.addAll(tds.getTasksInCategory(categoryId));
+        List<Task> tasks = tds.getTasksInCategory(categoryId);
+        Collections.sort(tasks, new TaskDueDateComparator());
+        adapter.addAll(tasks);
         tds.close();
         adapter.notifyDataSetChanged();
     }
@@ -146,5 +149,18 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
         tds.close();
         adapter.notifyDataSetChanged();
         return false;
+    }
+}
+
+class TaskDueDateComparator implements Comparator<Task> {
+    @Override
+    public int compare(Task task1, Task task2) {
+        if(task1.getDueDate() == null) {
+            return 1;
+        } else if(task2.getDueDate() == null) {
+            return -1;
+        } else {
+            return task1.getDueDateAsNumber().compareTo(task2.getDueDateAsNumber());
+        }
     }
 }
