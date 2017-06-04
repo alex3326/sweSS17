@@ -24,6 +24,8 @@ import at.sw2017.todo4u.model.TaskCategory;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
+import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -259,6 +261,67 @@ public class TaskListActivityTest {
 
         onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(1)
                 .onChildView(withText("My second task")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void listFinishedTasks() {
+        TaskCategory cat = new TaskCategory("MyTaskCategory");
+        tcDs.open();
+        tcDs.insertOrUpdate(cat);
+        tcDs.close();
+        Task t1 = new Task("Task 1 not finished");
+        t1.setProgress(30);
+        t1.setCategory(cat);
+        Task t2 = new Task("Task 2");
+        t2.setProgress(0);
+        t2.setCategory(cat);
+
+        tDs.open();
+        tDs.insertOrUpdate(t1);
+        tDs.insertOrUpdate(t2);
+        tDs.close();
+
+
+        callOnResumeWorkaround();
+
+        onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(0).perform(click());
+        onView(withId(R.id.task_list_view)).check(matches(isDisplayed()));
+
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0)
+                .onChildView(withText(t1.getTitle())).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(1)
+                .onChildView(withText(t2.getTitle())).check(matches(isDisplayed()));
+
+        t2.setFinished(true);
+        tDs.open();
+        tDs.insertOrUpdate(t2);
+        tDs.close();
+
+        onView(withId(R.id.bt_search_task)).perform(click());
+        onView(withId(android.support.design.R.id.search_src_text))
+                .perform(typeText("t"), clearText(), closeSoftKeyboard());
+        pressBack();
+
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0)
+                .onChildView(withText(t1.getTitle())).check(matches(isDisplayed()));
+        onView(withId(R.id.task_list_view)).check(matches(TestHelper.hasListSize(1)));
+
+        onView(withId(R.id.bt_finished)).perform(click());
+
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0)
+                .onChildView(withText(t2.getTitle())).check(matches(isDisplayed()));
+        onView(withId(R.id.task_list_view)).check(matches(TestHelper.hasListSize(1)));
+
+        pressBack();
+        pressBack();
+
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0)
+                .onChildView(withText(t1.getTitle())).check(matches(isDisplayed()));
+
+        pressBack();
+
+        onView(withId(R.id.category_list_view)).check(matches(isDisplayed()));
+
     }
 
 }
