@@ -109,6 +109,17 @@ public class TasksDataSource extends AbstractDataSource<Task> {
         return getSelection(selection, selectionArgs);
     }
 
+    public List<Task> getFinishedTasksInCategory(TaskCategory category) {
+        String selection = Todo4uContract.Task.PROGRESS + " = 100";
+        String[] selectionArgs = null;
+        if (category != null) {
+            selection += " AND " + Todo4uContract.Task.CATEGORY_ID + " = ?";
+            selectionArgs = new String[]{Long.toString(category.getId())};
+        }
+
+        return getSelection(selection, selectionArgs);
+    }
+
     public List<Task> getTasksInCategoryWithTitle(long categoryId, String title) {
         return getSelection(
                 Todo4uContract.Task.CATEGORY_ID + " = ? AND " +

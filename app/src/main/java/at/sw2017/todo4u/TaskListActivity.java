@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -30,7 +29,8 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
     private TasksDataSource tds;
     private SearchView searchView;
 
-    private long categoryId = 0;
+    private boolean showFinishedList = false;
+    private TaskCategory category = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +38,9 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
         setContentView(R.layout.activity_task_list);
 
 
-        categoryId = getIntent().getLongExtra("id", 0);
-
+        long categoryId = getIntent().getLongExtra("id", 0);
 
         tds = new TasksDataSource(this);
-
-        tds.open();
-        List<Task> tasks = tds.getTasksInCategory(categoryId);
-        tds.close();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_task);
         setSupportActionBar(toolbar);
@@ -53,10 +48,9 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-
         TaskCategoriesDataSource tcDs = new TaskCategoriesDataSource(this);
         tcDs.openReadonly();
-        TaskCategory category = tcDs.getById(categoryId);
+        category = tcDs.getById(categoryId);
         String categoryName = "";
         if (category != null) {
             categoryName = category.getName();
@@ -64,7 +58,7 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
 
         setTitle(getString(R.string.task_list_title, categoryName));
 
-        adapter = new TaskAdapter(this, android.R.layout.simple_list_item_1, tasks);
+        adapter = new TaskAdapter(this, android.R.layout.simple_list_item_1);
         task_list_view = (ListView) findViewById(R.id.task_list_view);
         task_list_view.setAdapter(adapter);
 
@@ -80,6 +74,8 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
                 }
             }
         });
+
+        updateData();
     }
 
 
@@ -98,14 +94,22 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
 
         if (id == R.id.bt_add_task) {
             Intent intent = new Intent(TaskListActivity.this, TaskAddActivity.class);
-            intent.putExtra("id", categoryId);
+            intent.putExtra("id", category.getId());
             startActivity(intent);
         } else if (id == R.id.bt_search_task) {
             return true;
+        } else if (id == R.id.bt_finished) {
+            showFinishedList = true;
+            updateData();
         } else if (id == android.R.id.home) {
-            Intent intent = new Intent(TaskListActivity.this, CategoryListActivity.class);
-            startActivity(intent);
-            finish();
+            if (showFinishedList) {
+                showFinishedList = false;
+                updateData();
+            } else {
+                Intent intent = new Intent(TaskListActivity.this, CategoryListActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -114,9 +118,14 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(TaskListActivity.this, CategoryListActivity.class);
-        startActivity(intent);
-        finish();
+        if (showFinishedList) {
+            showFinishedList = false;
+            updateData();
+        } else {
+            Intent intent = new Intent(TaskListActivity.this, CategoryListActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -128,7 +137,15 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
     public void updateData() {
         tds.open();
         adapter.clear();
-        adapter.addAll(tds.getTasksInCategory(categoryId));
+        List<Task> tasks;
+        if (showFinishedList) {
+            setTitle(R.string.task_list_title_finished);
+            tasks = tds.getFinishedTasksInCategory(category);
+        } else {
+            setTitle(getString(R.string.task_list_title, category.getName()));
+            tasks = tds.getNotFinishedTasksInCategory(category);
+        }
+        adapter.addAll(tasks);
         tds.close();
         adapter.notifyDataSetChanged();
     }
@@ -140,11 +157,16 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        adapter.clear();
-        tds.open();
-        adapter.addAll(tds.getTasksInCategoryWithTitle(categoryId, newText));
-        tds.close();
-        adapter.notifyDataSetChanged();
+        if (newText.trim().isEmpty()) {
+            updateData();
+        } else {
+            adapter.clear();
+            tds.open();
+            adapter.addAll(tds.getTasksInCategoryWithTitle(category.getId(), newText));
+            tds.close();
+            adapter.notifyDataSetChanged();
+        }
+
         return false;
     }
 }
