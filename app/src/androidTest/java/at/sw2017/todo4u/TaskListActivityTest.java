@@ -341,6 +341,7 @@ public class TaskListActivityTest {
 
     }
 
+    @Test
     public void testSortByDueDate() {
         TaskCategory taskCategory = new TaskCategory("testCat");
 
