@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import at.sw2017.todo4u.adapter.TaskAdapter;
@@ -24,6 +26,8 @@ import at.sw2017.todo4u.model.TaskCategory;
 public class TaskListActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
 
+    private enum SortOption {DUE_DATE, PROGRESS}
+
     private ListView task_list_view;
     private ArrayAdapter<Task> adapter;
     private TasksDataSource tds;
@@ -31,6 +35,7 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
 
     private boolean showFinishedList = false;
     private TaskCategory category = null;
+    private SortOption sorted_by = SortOption.DUE_DATE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +106,14 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
         } else if (id == R.id.bt_finished) {
             showFinishedList = true;
             updateData();
+        } else if (id == R.id.bt_sort) {
+            if (sorted_by == SortOption.DUE_DATE) {
+                sorted_by = SortOption.PROGRESS;
+                adapter.sort(new TaskProgressComparator());
+            } else if (sorted_by == SortOption.PROGRESS) {
+                sorted_by = SortOption.DUE_DATE;
+                adapter.sort(new TaskDueDateComparator());
+            }
         } else if (id == android.R.id.home) {
             if (showFinishedList) {
                 showFinishedList = false;
@@ -145,6 +158,12 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
             setTitle(getString(R.string.task_list_title, category.getName()));
             tasks = tds.getNotFinishedTasksInCategory(category);
         }
+
+        Comparator<Task> comparator =
+                (sorted_by == SortOption.PROGRESS) ? new TaskProgressComparator()
+                        : new TaskDueDateComparator();
+        Collections.sort(tasks, comparator);
+
         adapter.addAll(tasks);
         tds.close();
         adapter.notifyDataSetChanged();
@@ -168,5 +187,25 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
         }
 
         return false;
+    }
+}
+
+class TaskDueDateComparator implements Comparator<Task> {
+    @Override
+    public int compare(Task task1, Task task2) {
+        if (task1.getDueDate() == null) {
+            return 1;
+        } else if (task2.getDueDate() == null) {
+            return -1;
+        } else {
+            return task1.getDueDateAsNumber().compareTo(task2.getDueDateAsNumber());
+        }
+    }
+}
+
+class TaskProgressComparator implements Comparator<Task> {
+    @Override
+    public int compare(Task task1, Task task2) {
+        return task1.getProgress() - task2.getProgress();
     }
 }

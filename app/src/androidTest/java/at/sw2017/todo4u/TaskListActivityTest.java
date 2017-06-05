@@ -3,6 +3,7 @@ package at.sw2017.todo4u;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.contrib.PickerActions;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.DatePicker;
@@ -24,6 +25,7 @@ import at.sw2017.todo4u.model.TaskCategory;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -138,7 +140,12 @@ public class TaskListActivityTest {
         onView(withId(R.id.task_list_view)).check(matches(isDisplayed()));
 
 
-        onView(withId(R.id.bt_search_task)).perform(click());
+        try {
+            onView(withId(R.id.bt_search_task)).perform(click());
+        } catch (NoMatchingViewException ex) {
+            openContextualActionModeOverflowMenu();
+            onView(withText(R.string.task_list_search)).perform(click());
+        }
         onView(withId(android.support.design.R.id.search_src_text))
                 .perform(typeText("t"), closeSoftKeyboard());
         onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0).onChildView(withText("test")).check(matches(isDisplayed()));
@@ -297,7 +304,12 @@ public class TaskListActivityTest {
         tDs.insertOrUpdate(t2);
         tDs.close();
 
-        onView(withId(R.id.bt_search_task)).perform(click());
+        try {
+            onView(withId(R.id.bt_search_task)).perform(click());
+        } catch (NoMatchingViewException ex) {
+            openContextualActionModeOverflowMenu();
+            onView(withText(R.string.task_list_search)).perform(click());
+        }
         onView(withId(android.support.design.R.id.search_src_text))
                 .perform(typeText("t"), clearText(), closeSoftKeyboard());
         pressBack();
@@ -306,7 +318,12 @@ public class TaskListActivityTest {
                 .onChildView(withText(t1.getTitle())).check(matches(isDisplayed()));
         onView(withId(R.id.task_list_view)).check(matches(TestHelper.hasListSize(1)));
 
-        onView(withId(R.id.bt_finished)).perform(click());
+        try {
+            onView(withId(R.id.bt_finished)).perform(click());
+        } catch (NoMatchingViewException ex) {
+            openContextualActionModeOverflowMenu();
+            onView(withText(R.string.task_list_finished)).perform(click());
+        }
 
         onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0)
                 .onChildView(withText(t2.getTitle())).check(matches(isDisplayed()));
@@ -324,4 +341,88 @@ public class TaskListActivityTest {
 
     }
 
+    public void testSortByDueDate() {
+        TaskCategory taskCategory = new TaskCategory("testCat");
+
+        Task task1 = new Task("task1");
+        Calendar dueCal = Calendar.getInstance();
+        dueCal.add(Calendar.DAY_OF_MONTH, 40);
+        task1.setDueDate(dueCal.getTimeInMillis());
+        task1.setCategory(taskCategory);
+        Task task2 = new Task("task2");
+        dueCal.add(Calendar.DAY_OF_MONTH, -16);
+        task2.setDueDate(dueCal.getTimeInMillis());
+        task2.setCategory(taskCategory);
+        Task task3 = new Task("task3");
+        dueCal.add(Calendar.DAY_OF_MONTH, 5);
+        task3.setDueDate(dueCal.getTimeInMillis());
+        task3.setCategory(taskCategory);
+
+        tcDs.open();
+        tcDs.insertOrUpdate(taskCategory);
+        tcDs.close();
+
+        tDs.open();
+        tDs.insertOrUpdate(task1);
+        tDs.insertOrUpdate(task2);
+        tDs.insertOrUpdate(task3);
+        tDs.close();
+
+        callOnResumeWorkaround();
+
+        onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(0).perform(click());
+
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0).onChildView(withText("task2")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(1).onChildView(withText("task3")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(2).onChildView(withText("task1")).check(matches(isDisplayed()));
+
+    }
+
+    @Test
+    public void testSortByProgress() {
+        TaskCategory taskCategory = new TaskCategory("testCat");
+
+        Task task1 = new Task("task1");
+        Calendar dueCal = Calendar.getInstance();
+        dueCal.add(Calendar.DAY_OF_MONTH, 40);
+        task1.setDueDate(dueCal.getTimeInMillis());
+        task1.setProgress(60);
+        task1.setCategory(taskCategory);
+        Task task2 = new Task("task2");
+        dueCal.add(Calendar.DAY_OF_MONTH, -16);
+        task2.setDueDate(dueCal.getTimeInMillis());
+        task2.setProgress(20);
+        task2.setCategory(taskCategory);
+        Task task3 = new Task("task3");
+        dueCal.add(Calendar.DAY_OF_MONTH, 5);
+        task3.setDueDate(dueCal.getTimeInMillis());
+        task3.setProgress(80);
+        task3.setCategory(taskCategory);
+
+        tcDs.open();
+        tcDs.insertOrUpdate(taskCategory);
+        tcDs.close();
+
+        tDs.open();
+        tDs.insertOrUpdate(task1);
+        tDs.insertOrUpdate(task2);
+        tDs.insertOrUpdate(task3);
+        tDs.close();
+
+        callOnResumeWorkaround();
+
+        onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(0).perform(click());
+
+        onView(withId(R.id.bt_sort)).perform(click());
+
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0).onChildView(withText("task2")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(1).onChildView(withText("task1")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(2).onChildView(withText("task3")).check(matches(isDisplayed()));
+
+        onView(withId(R.id.bt_sort)).perform(click());
+
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0).onChildView(withText("task2")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(1).onChildView(withText("task3")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(2).onChildView(withText("task1")).check(matches(isDisplayed()));
+    }
 }

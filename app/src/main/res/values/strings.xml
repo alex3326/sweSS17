@@ -16,6 +16,7 @@
     <string name="task_list_add">Add</string>
     <string name="task_list_finished">Finished</string>
     <string name="task_list_title_finished">Finished Tasks</string>
+    <string name="task_list_sort">Sort by Progress/Due Date</string>
 
     <string name="task_add_title">New Task</string>
     <string name="task_edit_title">Edit Task</string>
