@@ -298,4 +298,52 @@ public class TaskListActivityTest {
         onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(2).onChildView(withText("task1")).check(matches(isDisplayed()));
 
     }
+
+    @Test
+    public void testSortByProgress() {
+        TaskCategory taskCategory = new TaskCategory("testCat");
+
+        Task task1 = new Task("task1");
+        Calendar dueCal = Calendar.getInstance();
+        dueCal.add(Calendar.DAY_OF_MONTH, 40);
+        task1.setDueDate(dueCal.getTimeInMillis());
+        task1.setProgress(60);
+        task1.setCategory(taskCategory);
+        Task task2 = new Task("task2");
+        dueCal.add(Calendar.DAY_OF_MONTH, -16);
+        task2.setDueDate(dueCal.getTimeInMillis());
+        task2.setProgress(20);
+        task2.setCategory(taskCategory);
+        Task task3 = new Task("task3");
+        dueCal.add(Calendar.DAY_OF_MONTH, 5);
+        task3.setDueDate(dueCal.getTimeInMillis());
+        task3.setProgress(80);
+        task3.setCategory(taskCategory);
+
+        tcDs.open();
+        tcDs.insertOrUpdate(taskCategory);
+        tcDs.close();
+
+        tDs.open();
+        tDs.insertOrUpdate(task1);
+        tDs.insertOrUpdate(task2);
+        tDs.insertOrUpdate(task3);
+        tDs.close();
+
+        callOnResumeWorkaround();
+
+        onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(0).perform(click());
+
+        onView(withId(R.id.bt_sort)).perform(click());
+
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0).onChildView(withText("task2")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(1).onChildView(withText("task1")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(2).onChildView(withText("task3")).check(matches(isDisplayed()));
+
+        onView(withId(R.id.bt_sort)).perform(click());
+
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(0).onChildView(withText("task2")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(1).onChildView(withText("task3")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.task_list_view)).atPosition(2).onChildView(withText("task1")).check(matches(isDisplayed()));
+    }
 }

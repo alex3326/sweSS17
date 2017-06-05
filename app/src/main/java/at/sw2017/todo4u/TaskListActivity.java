@@ -26,10 +26,14 @@ import at.sw2017.todo4u.model.TaskCategory;
 public class TaskListActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
 
+    private enum SortOption {DUE_DATE, PROGRESS}
+
     private ListView task_list_view;
     private ArrayAdapter<Task> adapter;
     private TasksDataSource tds;
     private SearchView searchView;
+
+    private SortOption sorted_by = SortOption.DUE_DATE;
 
     private long categoryId = 0;
 
@@ -103,6 +107,14 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
             startActivity(intent);
         } else if (id == R.id.bt_search_task) {
             return true;
+        } else if (id == R.id.bt_sort) {
+            if (sorted_by == SortOption.DUE_DATE) {
+                sorted_by = SortOption.PROGRESS;
+                adapter.sort(new TaskProgressComparator());
+            } else if (sorted_by == SortOption.PROGRESS) {
+                sorted_by = SortOption.DUE_DATE;
+                adapter.sort(new TaskDueDateComparator());
+            }
         } else if (id == android.R.id.home) {
             Intent intent = new Intent(TaskListActivity.this, CategoryListActivity.class);
             startActivity(intent);
@@ -130,7 +142,12 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
         tds.open();
         adapter.clear();
         List<Task> tasks = tds.getTasksInCategory(categoryId);
-        Collections.sort(tasks, new TaskDueDateComparator());
+
+        Comparator<Task> comparator =
+                (sorted_by == SortOption.PROGRESS) ? new TaskProgressComparator()
+                        : new TaskDueDateComparator();
+        Collections.sort(tasks, comparator);
+
         adapter.addAll(tasks);
         tds.close();
         adapter.notifyDataSetChanged();
@@ -155,12 +172,19 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
 class TaskDueDateComparator implements Comparator<Task> {
     @Override
     public int compare(Task task1, Task task2) {
-        if(task1.getDueDate() == null) {
+        if (task1.getDueDate() == null) {
             return 1;
-        } else if(task2.getDueDate() == null) {
+        } else if (task2.getDueDate() == null) {
             return -1;
         } else {
             return task1.getDueDateAsNumber().compareTo(task2.getDueDateAsNumber());
         }
+    }
+}
+
+class TaskProgressComparator implements Comparator<Task> {
+    @Override
+    public int compare(Task task1, Task task2) {
+        return task1.getProgress() - task2.getProgress();
     }
 }

@@ -11,6 +11,12 @@
 
 
     <item
+        android:id="@+id/bt_sort"
+        android:icon="@drawable/ic_sort_black_24dp"
+        android:title="@string/task_list_sort"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/bt_search_task"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="@string/task_list_search"
