@@ -37,20 +37,12 @@ public class DatabaseTest {
     @Before
     public void setup() {
         instrumentationCtx = InstrumentationRegistry.getTargetContext();
-        clearDatabase();
+        TestHelper.clearDatabase();
     }
 
     @After
     public void tearDown() {
-        clearDatabase();
-    }
-
-    private void clearDatabase() {
-        Todo4uDbHelper dbHelper = new Todo4uDbHelper(instrumentationCtx);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.execSQL("DELETE FROM " + Todo4uContract.Task._TABLE_NAME);
-        db.execSQL("DELETE FROM " + Todo4uContract.TaskCategory._TABLE_NAME);
-        db.close();
+        TestHelper.clearDatabase();
     }
 
     @Test

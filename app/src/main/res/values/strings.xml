@@ -31,4 +31,22 @@
     <string name="task_attr_dueDate">Due Date</string>
     <string name="task_attr_reminderDate">Reminder Date</string>
     <string name="task_attr_progress">Progress</string>
+
+    <string name="title_activity_setting">SettingActivity</string>
+
+    <string name="settings_category_color">Category Color:</string>
+    <string-array name="settings_category_colors_array">
+        <item>None</item>
+        <item>Colorful</item>
+        <item>Gray and White</item>
+    </string-array>
+
+    <string name="settings_category_color_prompt">Choose category color style</string>
+    <string name="category_add_color_none">None</string>
+    <string name="category_add_color_red">Red</string>
+    <string name="category_add_color_green">Green</string>
+    <string name="category_add_color_yellow">Yellow</string>
+    <string name="category_add_color_blue">Blue</string>
+    <string name="category_add_color_cyan">Cyan</string>
+    <string name="settings_title">Settings</string>
 </resources>

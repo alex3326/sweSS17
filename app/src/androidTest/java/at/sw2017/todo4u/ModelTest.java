@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import at.sw2017.todo4u.model.Setting;
 import at.sw2017.todo4u.model.Task;
 import at.sw2017.todo4u.model.TaskCategory;
 
@@ -88,8 +89,24 @@ public class ModelTest {
         assertEquals(name, tc.getName());
         tc.setName(name2);
         assertEquals(name2, tc.getName());
-        assertEquals("TaskCategory{id='0', name='My New Task Category'}", tc.toString());
+        tc.setColor(TaskCategory.CategoryColor.RED.getColorId());
+        assertEquals(TaskCategory.CategoryColor.RED, tc.getColor());
+        assertEquals(TaskCategory.CategoryColor.RED.getColorId(), tc.getColorId());
+        assertEquals("TaskCategory{id='0', name='My New Task Category', color=RED}", tc.toString());
+    }
 
+    @Test
+    public void setting() {
+        Setting setting = new Setting();
+        String key = "S1";
+        int value = 1337;
+        setting.setKey(key);
+        setting.setValue(value);
+
+        assertEquals(key, setting.getKey());
+        assertEquals(value, setting.getValue());
+
+        assertEquals("Setting{id=0, key='S1', value=1337}", setting.toString());
     }
 
 }

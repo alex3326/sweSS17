@@ -54,7 +54,7 @@ public class TaskEditActivityTest {
         tcDs = new TaskCategoriesDataSource(context);
         tDs = new TasksDataSource(context);
 
-        clearDatabase();
+        TestHelper.clearDatabase();
 
         category = new TaskCategory("My Category");
         tcDs.open();
@@ -65,15 +65,7 @@ public class TaskEditActivityTest {
 
     @After
     public void tearDown() {
-        clearDatabase();
-    }
-
-    private void clearDatabase() {
-        Todo4uDbHelper dbHelper = new Todo4uDbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.execSQL("DELETE FROM " + Todo4uContract.Task._TABLE_NAME);
-        db.execSQL("DELETE FROM " + Todo4uContract.TaskCategory._TABLE_NAME);
-        db.close();
+        TestHelper.clearDatabase();
     }
 
 
