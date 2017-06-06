@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
     android:orientation="vertical"
-    tools:context="at.sw2017.todo4u.CategoryAddPopup">
+    tools:context="at.sw2017.todo4u.CategoryAddPopup"
+    android:weightSum="1">
 
     <TextView
         android:id="@+id/tv_new_category"
@@ -61,5 +62,73 @@
 
 
     </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="106dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.87">
+
+        <RadioButton
+            android:id="@+id/rbtnNone"
+            android:layout_width="match_parent"
+            android:layout_height="26sp"
+            android:layout_gravity="center"
+            android:checked="true"
+            android:text="@string/category_add_color_none"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbtnRed"
+            android:layout_width="match_parent"
+            android:layout_height="26sp"
+            android:layout_gravity="center"
+            android:text="@string/category_add_color_red"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbtnGreen"
+            android:layout_width="match_parent"
+            android:layout_height="26sp"
+            android:layout_gravity="center"
+            android:text="@string/category_add_color_green"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbtnYellow"
+            android:layout_width="match_parent"
+            android:layout_height="26sp"
+            android:layout_gravity="center"
+            android:text="@string/category_add_color_yellow"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbtnBlue"
+            android:layout_width="match_parent"
+            android:layout_height="26sp"
+            android:layout_gravity="center"
+            android:text="@string/category_add_color_blue"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbtnCyan"
+            android:layout_width="match_parent"
+            android:layout_height="26sp"
+            android:layout_gravity="center"
+            android:text="@string/category_add_color_cyan"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RadioGroup>
 
 </LinearLayout>

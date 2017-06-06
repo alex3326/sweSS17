@@ -30,7 +30,7 @@ public class CategoryAddPopup extends AppCompatActivity {
         int Width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (Width * .8), (int) (height * .50));
+        getWindow().setLayout((int) (Width * .8), (int) (height * .6));
     }
 
 

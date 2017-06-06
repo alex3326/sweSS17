@@ -1,6 +1,7 @@
 package at.sw2017.todo4u;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 
@@ -9,9 +10,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.List;
-
+import at.sw2017.todo4u.database.SettingsDataSource;
 import at.sw2017.todo4u.database.TaskCategoriesDataSource;
+import at.sw2017.todo4u.model.Setting;
 import at.sw2017.todo4u.model.TaskCategory;
 
 import static android.support.test.espresso.Espresso.onData;
@@ -27,32 +28,26 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertEquals;
 
 public class CategoryListActivityTest {
     @Rule
     public final ActivityTestRule<CategoryListActivity> mActivityRule = new ActivityTestRule<>(CategoryListActivity.class);
     private TaskCategoriesDataSource tcDs;
+    private SettingsDataSource sDs;
 
     @Before
     public void setUp() {
         Context context = InstrumentationRegistry.getTargetContext();
         tcDs = new TaskCategoriesDataSource(context);
+        sDs = new SettingsDataSource(context);
 
-        removeAllCategories();
+        TestHelper.clearDatabase();
     }
 
     @After
     public void tearDown() {
-        removeAllCategories();
-    }
-
-    private void removeAllCategories() {
-        tcDs.open();
-        List<TaskCategory> categories = tcDs.getAll();
-        for (TaskCategory taskCategory : categories) {
-            tcDs.delete(taskCategory);
-        }
-        tcDs.close();
+        TestHelper.clearDatabase();
     }
 
     private void callOnResumeWorkaround() {
@@ -85,6 +80,59 @@ public class CategoryListActivityTest {
         onView(withText("test")).check(matches(isDisplayed()));
         onView(withId(R.id.category_add_btSave)).perform(click());
         onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(0).onChildView(withText("test")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testInsertTaskCategoryColor() {
+        sDs.open();
+        sDs.insertOrUpdate(new Setting(Setting.KEY_CATEGORY_COLOR_OPTION, 1));
+        sDs.close();
+
+        int colors[] = {Color.WHITE, Color.argb(30, 200, 20, 30), Color.argb(30, 30, 200, 20), Color.argb(30, 220, 255, 0), Color.argb(30, 20, 30, 200), Color.argb(30, 0, 183, 235)};
+        int radiobuttons[] = {R.id.rbtnNone, R.id.rbtnRed, R.id.rbtnGreen, R.id.rbtnYellow, R.id.rbtnBlue, R.id.rbtnCyan};
+
+
+        for (int i = 0; i < colors.length; i++) {
+
+            onView(withId(R.id.bt_add_category)).perform(click());
+            onView(withId(R.id.category_pop_up_view)).check(matches(isDisplayed()));
+            onView(withId(R.id.tx_new_category)).perform(typeText("cat " + i), closeSoftKeyboard());
+            onView(withId(radiobuttons[i])).perform(click());
+            onView(withId(R.id.category_add_btSave)).perform(click());
+            onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(i)
+                    .check(matches(TestHelper.hasBackgroundColor(colors[i])));
+            onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(i)
+                    .onChildView(withText("cat " + i))
+                    .check(matches(isDisplayed()));
+        }
+    }
+
+    @Test
+    public void testInsertTaskCategoryGray() {
+        sDs.open();
+        sDs.insertOrUpdate(new Setting(Setting.KEY_CATEGORY_COLOR_OPTION, 2));
+        sDs.close();
+
+        onView(withId(R.id.bt_add_category)).perform(click());
+        onView(withId(R.id.category_pop_up_view)).check(matches(isDisplayed()));
+        onView(withId(R.id.tx_new_category)).perform(typeText("test 1"), closeSoftKeyboard());
+        onView(withText("test 1")).check(matches(isDisplayed()));
+        onView(withId(R.id.category_add_btSave)).perform(click());
+        onView(withId(R.id.bt_add_category)).perform(click());
+        onView(withId(R.id.category_pop_up_view)).check(matches(isDisplayed()));
+        onView(withId(R.id.tx_new_category)).perform(typeText("test 2"), closeSoftKeyboard());
+        onView(withText("test 2")).check(matches(isDisplayed()));
+        onView(withId(R.id.category_add_btSave)).perform(click());
+        onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(0)
+                .check(matches(TestHelper.hasBackgroundColor(Color.argb(30, 0, 0, 0))));
+        onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(0)
+                .onChildView(withText("test 1"))
+                .check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(1)
+                .check(matches(TestHelper.hasBackgroundColor(Color.WHITE)));
+        onData(anything()).inAdapterView(withId(R.id.category_list_view)).atPosition(1)
+                .onChildView(withText("test 2"))
+                .check(matches(isDisplayed()));
     }
 
     @Test

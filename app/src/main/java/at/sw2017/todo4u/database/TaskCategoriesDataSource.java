@@ -11,13 +11,21 @@ import at.sw2017.todo4u.model.TaskCategory;
 public class TaskCategoriesDataSource extends AbstractDataSource<TaskCategory> {
 
     public TaskCategoriesDataSource(Context context) {
-        super(context, new String[]{Todo4uContract.TaskCategory._ID, Todo4uContract.TaskCategory.NAME}, Todo4uContract.TaskCategory._TABLE_NAME);
+        super(context,
+                new String[]{
+                        Todo4uContract.TaskCategory._ID,
+                        Todo4uContract.TaskCategory.NAME,
+                        Todo4uContract.TaskCategory.COLOR
+                },
+                Todo4uContract.TaskCategory._TABLE_NAME
+        );
     }
 
     @Override
     protected ContentValues getContentValues(TaskCategory object) {
         ContentValues values = new ContentValues();
         values.put(Todo4uContract.TaskCategory.NAME, object.getName());
+        values.put(Todo4uContract.TaskCategory.COLOR, object.getColorId());
         return values;
     }
 
@@ -26,6 +34,7 @@ public class TaskCategoriesDataSource extends AbstractDataSource<TaskCategory> {
         TaskCategory obj = new TaskCategory();
         obj.setId(cursor.getLong(0));
         obj.setName(cursor.getString(1));
+        obj.setColor(cursor.getInt(2));
         return obj;
     }
 
