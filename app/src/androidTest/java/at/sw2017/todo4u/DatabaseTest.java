@@ -5,6 +5,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.MediumTest;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +35,12 @@ public class DatabaseTest {
     @Before
     public void setup() {
         instrumentationCtx = InstrumentationRegistry.getTargetContext();
+        TestHelper.clearDatabase();
+    }
+
+    @After
+    public void tearDown() {
+        TestHelper.clearDatabase();
     }
 
     @Test
@@ -55,7 +62,7 @@ public class DatabaseTest {
         task.setDueDate(dueCal.getTime());
         task.setReminderDate(remindCal.getTime());
         task.setCreationDate(creationDate);
-        task.setState(Task.State.IN_PROGRESS);
+        task.setProgress(52);
 
         TaskCategoriesDataSource tcDs = new TaskCategoriesDataSource(instrumentationCtx);
         tcDs.open();
@@ -79,7 +86,7 @@ public class DatabaseTest {
         assertEquals(remindCal.getTime(), dbTask.getReminderDate());
         assertEquals(creationDate, dbTask.getCreationDate());
         assertEquals(remindCal.getTime(), dbTask.getReminderDate());
-        assertEquals(Task.State.IN_PROGRESS, dbTask.getState());
+        assertEquals(52, dbTask.getProgress());
 
         List<Task> tasksInCategory = tDs.getTasksInCategory(cat);
 
@@ -123,7 +130,7 @@ public class DatabaseTest {
         assertNull(dbTask.getDueDate());
         assertNull(dbTask.getReminderDate());
         assertNull(dbTask.getCreationDate());
-        assertNull(dbTask.getState());
+        assertEquals(0, dbTask.getProgress());
 
         List<Task> tasksInCategory = tDs.getTasksInCategory(cat);
 
@@ -155,7 +162,7 @@ public class DatabaseTest {
         assertNull(dbTask.getDueDate());
         assertNull(dbTask.getReminderDate());
         assertNull(dbTask.getCreationDate());
-        assertNull(dbTask.getState());
+        assertEquals(0, dbTask.getProgress());
 
         tDs.close();
     }
@@ -192,7 +199,7 @@ public class DatabaseTest {
         assertNull(dbTask.getDueDate());
         assertNull(dbTask.getReminderDate());
         assertNull(dbTask.getCreationDate());
-        assertNull(dbTask.getState());
+        assertEquals(0, dbTask.getProgress());
 
         List<Task> tasksInCategory = tDs.getTasksInCategory(cat);
 
@@ -242,7 +249,7 @@ public class DatabaseTest {
         assertNull(dbTask.getDueDate());
         assertNull(dbTask.getReminderDate());
         assertNull(dbTask.getCreationDate());
-        assertNull(dbTask.getState());
+        assertEquals(0, dbTask.getProgress());
 
         String taskDescription2 = "The new description.";
         String taskTitle2 = "The new title.";
@@ -252,7 +259,7 @@ public class DatabaseTest {
         dbTask.setDueDate(dueCal.getTime());
         dbTask.setReminderDate(remindCal.getTime());
         dbTask.setCreationDate(creationDate);
-        dbTask.setState(Task.State.IN_PROGRESS);
+        dbTask.setProgress(100);
 
         tDs.insertOrUpdate(dbTask);
 
@@ -268,7 +275,7 @@ public class DatabaseTest {
         assertEquals(remindCal.getTime(), dbTask.getReminderDate());
         assertEquals(creationDate, dbTask.getCreationDate());
         assertEquals(remindCal.getTime(), dbTask.getReminderDate());
-        assertEquals(Task.State.IN_PROGRESS, dbTask.getState());
+        assertTrue(dbTask.isFinished());
 
         List<Task> tasksInCategory = tDs.getTasksInCategory(cat);
 
@@ -318,11 +325,18 @@ public class DatabaseTest {
         assertTrue(tDs.insertOrUpdate(t2));
 
         List<Task> allTasks = tDs.getAll();
+        List<Task> categoryNullTasks = tDs.getTasksInCategory(null);
         tDs.close();
+
         assertNotNull(allTasks);
         assertEquals(2, allTasks.size());
         assertEquals(t1, allTasks.get(0));
         assertEquals(t2, allTasks.get(1));
+
+        assertNotNull(categoryNullTasks);
+        assertEquals(2, categoryNullTasks.size());
+        assertEquals(t1, categoryNullTasks.get(0));
+        assertEquals(t2, categoryNullTasks.get(1));
 
     }
 }

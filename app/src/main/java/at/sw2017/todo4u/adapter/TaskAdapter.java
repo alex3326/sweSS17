@@ -20,32 +20,15 @@ import at.sw2017.todo4u.model.Task;
 
 public class TaskAdapter extends ArrayAdapter<Task> {
     private static LayoutInflater inflater = null;
-    private Activity activity;
-    private List<Task> items;
+
+    public TaskAdapter(Activity activity, int textViewResourceId) {
+        super(activity, textViewResourceId);
+        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
 
     public TaskAdapter(Activity activity, int textViewResourceId, List<Task> items) {
         super(activity, textViewResourceId, items);
-        try {
-            this.activity = activity;
-            this.items = items;
-
-            inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        } catch (Exception e) {
-
-        }
-    }
-
-    public int getCount() {
-        return items.size();
-    }
-
-    public Task getItem(int position) {
-        return items.get(position);
-    }
-
-    public long getItemId(int position) {
-        return position;
+        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @NonNull
@@ -67,7 +50,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
             }
 
 
-            Task task = items.get(position);
+            Task task = getItem(position);
             long daysRemaining = 0;
 
             if (task.getDueDate() != null) {
@@ -77,7 +60,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
             }
 
             holder.display_name.setText(task.getTitle());
-            holder.display_days.setText(String.format(Locale.getDefault(), "%d", daysRemaining));
+            holder.display_days.setText(String.format(Locale.getDefault(), "%d d", daysRemaining));
 
 
         } catch (Exception e) {
@@ -86,9 +69,8 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         return vi;
     }
 
-    public static class ViewHolder {
-        public TextView display_name;
-        public TextView display_days;
-
+    private static class ViewHolder {
+        TextView display_name;
+        TextView display_days;
     }
 }

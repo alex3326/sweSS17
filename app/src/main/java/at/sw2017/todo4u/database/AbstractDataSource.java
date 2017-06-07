@@ -13,10 +13,10 @@ import java.util.List;
 import at.sw2017.todo4u.model.BaseModel;
 
 abstract class AbstractDataSource<T extends BaseModel> {
-    protected SQLiteDatabase database;
     protected final String[] allColumns;
     protected final String tableName;
     private final Todo4uDbHelper dbHelper;
+    protected SQLiteDatabase database;
 
     AbstractDataSource(Context context, String[] allColumns, String tableName) {
         dbHelper = new Todo4uDbHelper(context);
@@ -105,8 +105,8 @@ abstract class AbstractDataSource<T extends BaseModel> {
     }
 
     protected List<T> getSelection(String selection,
-                                String[] selectionArgs, String groupBy, String having,
-                                String orderBy) {
+                                   String[] selectionArgs, String groupBy, String having,
+                                   String orderBy) {
         List<T> objects = new ArrayList<>();
 
         Cursor cursor = database.query(

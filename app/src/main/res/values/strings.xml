@@ -14,14 +14,39 @@
     <string name="task_list_title">Tasks: %1$s</string>
     <string name="task_list_search">Search</string>
     <string name="task_list_add">Add</string>
+    <string name="task_list_finished">Finished</string>
+    <string name="task_list_title_finished">Finished Tasks</string>
+    <string name="task_list_sort">Sort by Progress/Due Date</string>
 
     <string name="task_add_title">New Task</string>
+    <string name="task_edit_title">Edit Task</string>
     <string name="task_add_error_required_fields">Please fill out all required fields.</string>
+    <string name="task_add_error_dates_reminderAfterDue">The reminder date has to be before the due date.</string>
     <string name="task_add_setDueDate">Set Due Date</string>
     <string name="task_add_setReminderDate">Set Reminder Date</string>
 
     <string name="task_attr_title">Title</string>
     <string name="task_attr_description">Description</string>
+    <string name="task_attr_category">Category</string>
     <string name="task_attr_dueDate">Due Date</string>
     <string name="task_attr_reminderDate">Reminder Date</string>
+    <string name="task_attr_progress">Progress</string>
+
+    <string name="title_activity_setting">SettingActivity</string>
+
+    <string name="settings_category_color">Category Color:</string>
+    <string-array name="settings_category_colors_array">
+        <item>None</item>
+        <item>Colorful</item>
+        <item>Gray and White</item>
+    </string-array>
+
+    <string name="settings_category_color_prompt">Choose category color style</string>
+    <string name="category_add_color_none">None</string>
+    <string name="category_add_color_red">Red</string>
+    <string name="category_add_color_green">Green</string>
+    <string name="category_add_color_yellow">Yellow</string>
+    <string name="category_add_color_blue">Blue</string>
+    <string name="category_add_color_cyan">Cyan</string>
+    <string name="settings_title">Settings</string>
 </resources>

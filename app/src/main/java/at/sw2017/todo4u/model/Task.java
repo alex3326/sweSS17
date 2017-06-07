@@ -1,25 +1,15 @@
 package at.sw2017.todo4u.model;
 
-import android.util.SparseArray;
-
 import java.util.Date;
 
 public class Task extends BaseModel {
-    private static final SparseArray<State> stateMap = new SparseArray<>();
-
-    static {
-        for (State type : State.values()) {
-            stateMap.put(type.stateId, type);
-        }
-    }
-
     private String title;
     private String description;
     private Date dueDate;
     private Date creationDate;
     private Date reminderDate;
     private TaskCategory category;
-    private State state;
+    private int progress; // 0 = not started, 100 = finished
 
     public Task() {
     }
@@ -48,6 +38,10 @@ public class Task extends BaseModel {
         return dueDate;
     }
 
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+
     public void setDueDate(long dueDateMillis) {
         this.dueDate = new Date(dueDateMillis);
     }
@@ -57,12 +51,12 @@ public class Task extends BaseModel {
         return dueDate.getTime();
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public Date getCreationDate() {
         return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public void setCreationDate(long creationDateMillis) {
@@ -74,12 +68,12 @@ public class Task extends BaseModel {
         return creationDate.getTime();
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public Date getReminderDate() {
         return reminderDate;
+    }
+
+    public void setReminderDate(Date reminderDate) {
+        this.reminderDate = reminderDate;
     }
 
     public void setReminderDate(long reminderDateMillis) {
@@ -91,10 +85,6 @@ public class Task extends BaseModel {
         return reminderDate.getTime();
     }
 
-    public void setReminderDate(Date reminderDate) {
-        this.reminderDate = reminderDate;
-    }
-
     public TaskCategory getCategory() {
         return category;
     }
@@ -103,20 +93,20 @@ public class Task extends BaseModel {
         this.category = category;
     }
 
-    public State getState() {
-        return state;
+    public int getProgress() {
+        return progress;
     }
 
-    public void setState(int stateId) {
-        this.state = stateMap.get(stateId);
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 
-    public int getStateId() {
-        return state.stateId;
+    public boolean isFinished() {
+        return progress == 100;
     }
 
-    public void setState(State state) {
-        this.state = state;
+    public void setFinished(boolean finished) {
+        progress = finished ? 100 : 0;
     }
 
     @Override
@@ -129,21 +119,8 @@ public class Task extends BaseModel {
                 ", creationDate=" + creationDate +
                 ", reminderDate=" + reminderDate +
                 ", category=" + category +
-                ", state=" + state +
+                ", progress=" + progress +
                 '}';
     }
 
-    public enum State {
-        OPEN(0), FINISHED(1), IN_PROGRESS(2);
-
-        private final int stateId;
-
-        State(int stateId) {
-            this.stateId = stateId;
-        }
-
-        public int getStateId() {
-            return stateId;
-        }
-    }
 }

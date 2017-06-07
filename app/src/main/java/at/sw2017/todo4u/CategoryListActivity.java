@@ -75,6 +75,9 @@ public class CategoryListActivity extends AppCompatActivity implements SearchVie
             startActivity(homeIntent);
         } else if (id == R.id.bt_search_category) {
             return true;
+        } else if (id == R.id.bt_settings) {
+            Intent homeIntent = new Intent(CategoryListActivity.this, SettingActivity.class);
+            startActivity(homeIntent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -111,8 +114,7 @@ public class CategoryListActivity extends AppCompatActivity implements SearchVie
     }
 
     public void onTaskAdd(View view) {
-        // TODO implementation
-        Intent intent = new Intent(this, CategoryAddPopup.class);
+        Intent intent = new Intent(this, TaskAddActivity.class);
         startActivity(intent);
     }
 }

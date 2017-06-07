@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import at.sw2017.todo4u.model.Setting;
 import at.sw2017.todo4u.model.Task;
 import at.sw2017.todo4u.model.TaskCategory;
 
@@ -30,9 +31,9 @@ public class ModelTest {
         assertNull(t.getReminderDate());
         assertNull(t.getReminderDateAsNumber());
         assertNull(t.getCategory());
-        assertNull(t.getState());
+        assertEquals(0, t.getProgress());
         assertEquals(0, t.getId());
-        assertEquals("Task{id=0, title='Mein Task 42', description='null', dueDate=null, creationDate=null, reminderDate=null, category=null, state=null}", t.toString());
+        assertEquals("Task{id=0, title='Mein Task 42', description='null', dueDate=null, creationDate=null, reminderDate=null, category=null, progress=0}", t.toString());
     }
 
     @Test
@@ -66,24 +67,18 @@ public class ModelTest {
     }
 
     @Test
-    public void taskState() {
-        Task t1 = new Task("T");
-        t1.setState(0);
-        assertEquals(Task.State.OPEN, t1.getState());
-        t1.setState(1);
-        assertEquals(Task.State.FINISHED, t1.getState());
-        t1.setState(2);
-        assertEquals(Task.State.IN_PROGRESS, t1.getState());
-        t1.setState(Task.State.OPEN);
-        assertEquals(0, t1.getStateId());
-        t1.setState(Task.State.FINISHED);
-        assertEquals(1, t1.getStateId());
-        t1.setState(Task.State.IN_PROGRESS);
-        assertEquals(2, t1.getStateId());
-
-        assertEquals(Task.State.OPEN, Task.State.valueOf("OPEN"));
-        assertEquals(Task.State.FINISHED, Task.State.valueOf("FINISHED"));
-        assertEquals(Task.State.IN_PROGRESS, Task.State.valueOf("IN_PROGRESS"));
+    public void taskFinished() {
+        Task t = new Task();
+        t.setProgress(0);
+        assertFalse(t.isFinished());
+        t.setProgress(30);
+        assertFalse(t.isFinished());
+        t.setFinished(true);
+        assertTrue(t.isFinished());
+        assertEquals(100, t.getProgress());
+        t.setFinished(false);
+        assertFalse(t.isFinished());
+        assertEquals(0, t.getProgress());
     }
 
     @Test
@@ -94,8 +89,24 @@ public class ModelTest {
         assertEquals(name, tc.getName());
         tc.setName(name2);
         assertEquals(name2, tc.getName());
-        assertEquals("TaskCategory{id='0', name='My New Task Category'}", tc.toString());
+        tc.setColor(TaskCategory.CategoryColor.RED.getColorId());
+        assertEquals(TaskCategory.CategoryColor.RED, tc.getColor());
+        assertEquals(TaskCategory.CategoryColor.RED.getColorId(), tc.getColorId());
+        assertEquals("TaskCategory{id='0', name='My New Task Category', color=RED}", tc.toString());
+    }
 
+    @Test
+    public void setting() {
+        Setting setting = new Setting();
+        String key = "S1";
+        int value = 1337;
+        setting.setKey(key);
+        setting.setValue(value);
+
+        assertEquals(key, setting.getKey());
+        assertEquals(value, setting.getValue());
+
+        assertEquals("Setting{id=0, key='S1', value=1337}", setting.toString());
     }
 
 }
