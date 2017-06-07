@@ -28,7 +28,6 @@ public class Todo4uDbHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + Todo4uContract.Task._TABLE_NAME;
     private static final String SQL_DELETE_TASKCATEGORY =
             "DROP TABLE IF EXISTS " + Todo4uContract.TaskCategory._TABLE_NAME;
-    private final Context context;
     private static final String SQL_CREATE_SETTING =
             "CREATE TABLE " + Todo4uContract.Setting._TABLE_NAME + " (" +
                     Todo4uContract.Setting._ID + " INTEGER PRIMARY KEY," +
@@ -36,6 +35,7 @@ public class Todo4uDbHelper extends SQLiteOpenHelper {
                     Todo4uContract.Setting.VALUE + " INTEGER);";
     private static final String SQL_DELETE_SETTING =
             "DROP TABLE IF EXISTS " + Todo4uContract.Setting._TABLE_NAME;
+    private final Context context;
 
     public Todo4uDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

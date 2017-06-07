@@ -26,13 +26,10 @@ import at.sw2017.todo4u.model.TaskCategory;
 public class TaskListActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
 
-    private enum SortOption {DUE_DATE, PROGRESS}
-
     private ListView task_list_view;
     private ArrayAdapter<Task> adapter;
     private TasksDataSource tds;
     private SearchView searchView;
-
     private boolean showFinishedList = false;
     private TaskCategory category = null;
     private SortOption sorted_by = SortOption.DUE_DATE;
@@ -83,7 +80,6 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
         updateData();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.tasklist, menu);
@@ -127,7 +123,6 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
 
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -188,6 +183,8 @@ public class TaskListActivity extends AppCompatActivity implements SearchView.On
 
         return false;
     }
+
+    private enum SortOption {DUE_DATE, PROGRESS}
 }
 
 class TaskDueDateComparator implements Comparator<Task> {

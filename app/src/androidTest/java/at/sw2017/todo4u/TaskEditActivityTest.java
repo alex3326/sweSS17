@@ -2,7 +2,6 @@ package at.sw2017.todo4u;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.contrib.PickerActions;
 import android.support.test.rule.ActivityTestRule;
@@ -18,8 +17,6 @@ import java.util.Calendar;
 
 import at.sw2017.todo4u.database.TaskCategoriesDataSource;
 import at.sw2017.todo4u.database.TasksDataSource;
-import at.sw2017.todo4u.database.Todo4uContract;
-import at.sw2017.todo4u.database.Todo4uDbHelper;
 import at.sw2017.todo4u.model.Task;
 import at.sw2017.todo4u.model.TaskCategory;
 
@@ -35,8 +32,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class TaskEditActivityTest {
 

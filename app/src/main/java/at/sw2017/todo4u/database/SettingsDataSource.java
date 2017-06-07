@@ -12,9 +12,9 @@ public class SettingsDataSource extends AbstractDataSource<Setting> {
 
     public SettingsDataSource(Context context) {
         super(context, new String[]{
-                    Todo4uContract.Setting._ID,
-                    Todo4uContract.Setting.KEY,
-                    Todo4uContract.Setting.VALUE
+                        Todo4uContract.Setting._ID,
+                        Todo4uContract.Setting.KEY,
+                        Todo4uContract.Setting.VALUE
                 },
                 Todo4uContract.Setting._TABLE_NAME);
     }

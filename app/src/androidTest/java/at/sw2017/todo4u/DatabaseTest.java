@@ -1,7 +1,6 @@
 package at.sw2017.todo4u;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.MediumTest;
 import android.support.test.runner.AndroidJUnit4;
@@ -17,7 +16,6 @@ import java.util.List;
 
 import at.sw2017.todo4u.database.TaskCategoriesDataSource;
 import at.sw2017.todo4u.database.TasksDataSource;
-import at.sw2017.todo4u.database.Todo4uContract;
 import at.sw2017.todo4u.database.Todo4uDbHelper;
 import at.sw2017.todo4u.model.Task;
 import at.sw2017.todo4u.model.TaskCategory;

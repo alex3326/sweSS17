@@ -38,6 +38,10 @@ public class Task extends BaseModel {
         return dueDate;
     }
 
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+
     public void setDueDate(long dueDateMillis) {
         this.dueDate = new Date(dueDateMillis);
     }
@@ -47,12 +51,12 @@ public class Task extends BaseModel {
         return dueDate.getTime();
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public Date getCreationDate() {
         return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public void setCreationDate(long creationDateMillis) {
@@ -64,12 +68,12 @@ public class Task extends BaseModel {
         return creationDate.getTime();
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public Date getReminderDate() {
         return reminderDate;
+    }
+
+    public void setReminderDate(Date reminderDate) {
+        this.reminderDate = reminderDate;
     }
 
     public void setReminderDate(long reminderDateMillis) {
@@ -79,10 +83,6 @@ public class Task extends BaseModel {
     public Long getReminderDateAsNumber() {
         if (reminderDate == null) return null;
         return reminderDate.getTime();
-    }
-
-    public void setReminderDate(Date reminderDate) {
-        this.reminderDate = reminderDate;
     }
 
     public TaskCategory getCategory() {

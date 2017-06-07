@@ -1,7 +1,6 @@
 package at.sw2017.todo4u;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.UiController;
@@ -70,13 +69,16 @@ class TestHelper {
     static Matcher<View> hasListSize(final int size) {
         return new TypeSafeMatcher<View>() {
             int length;
-            @Override public boolean matchesSafely (final View view) {
+
+            @Override
+            public boolean matchesSafely(final View view) {
                 length = ((AdapterView) view).getAdapter().getCount();
                 return length == size;
             }
 
-            @Override public void describeTo (final Description description) {
-                description.appendText ("ListView should have " + size + " items, the actual size is " + length);
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("ListView should have " + size + " items, the actual size is " + length);
             }
         };
     }
@@ -84,10 +86,11 @@ class TestHelper {
     static Matcher<View> hasBackgroundColor(final int color) {
         return new TypeSafeMatcher<View>() {
             int isColor = -1;
+
             @Override
             protected boolean matchesSafely(View view) {
-                if(view.getBackground() instanceof ColorDrawable) {
-                    isColor = ((ColorDrawable)view.getBackground()).getColor();
+                if (view.getBackground() instanceof ColorDrawable) {
+                    isColor = ((ColorDrawable) view.getBackground()).getColor();
                     return color == isColor;
                 }
                 return false;
