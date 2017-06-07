@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -148,7 +147,7 @@ public class TaskAddActivity extends AppCompatActivity {
         task.setDescription(tfDescription.getText().toString());
 
         Object selectedCat = spinnerCategory.getSelectedItem();
-        if(selectedCat instanceof TaskCategory) {
+        if (selectedCat instanceof TaskCategory) {
             task.setCategory((TaskCategory) selectedCat);
         }
 

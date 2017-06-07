@@ -27,16 +27,16 @@ public class TaskCategory extends BaseModel {
         return color;
     }
 
+    public void setColor(int colorId) {
+        this.color = colorMap.get(colorId);
+    }
+
     public int getColorId() {
         return color.colorId;
     }
 
     public void setColor(CategoryColor color) {
         this.color = color;
-    }
-
-    public void setColor(int colorId) {
-        this.color = colorMap.get(colorId);
     }
 
     @Override

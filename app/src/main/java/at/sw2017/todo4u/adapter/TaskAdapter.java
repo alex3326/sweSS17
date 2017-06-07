@@ -25,6 +25,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         super(activity, textViewResourceId);
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
     public TaskAdapter(Activity activity, int textViewResourceId, List<Task> items) {
         super(activity, textViewResourceId, items);
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
